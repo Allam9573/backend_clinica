@@ -1,10 +1,10 @@
-# API REST para Gestión de Clínica - Proyecto Spring Boot
+# API REST para Gestión de Clínica - Proyecto Spring Boot y MySQL
 
-Este es un proyecto de API REST para la gestión de una clínica desarrollado utilizando Spring Boot y MySQL.
+Este es un proyecto de API REST para la gestión de una clínica desarrollado utilizando Spring Boot y MySQL para la clase Lenguajes de Programacion
 
 ## Requisitos Previos
 
-- Java JDK 8 o superior instalado: [Java Downloads](https://www.oracle.com/java/technologies/javase-downloads.html)
+- Java JDK 11 o superior instalado: [Java Downloads](https://www.oracle.com/java/technologies/javase-downloads.html)
 - MySQL instalado y configurado: [MySQL Downloads](https://dev.mysql.com/downloads/)
 
 ## Configuración del Proyecto
@@ -40,14 +40,15 @@ Este es un proyecto de API REST para la gestión de una clínica desarrollado ut
 
 ## Estructura del Proyecto
 
-- `src/main/java/com/tuempresa/clinica`: Contiene los archivos fuente Java.
+- `src/main/java/com/devsoft/clinica`: Contiene los archivos fuente Java.
 - `src/main/resources`: Contiene archivos de configuración.
 
 ## Tecnologías Utilizadas
 
-- Spring Boot
-- Spring Data JPA
-- MySQL
+- Spring Boot - Version: 3.1.5
+- Spring Data JPA - Version: 3.1.5
+- Lombok
+- MySQL - Version: 8.0.33
 
 ## Endpoints de la API
 
@@ -56,7 +57,7 @@ Este es un proyecto de API REST para la gestión de una clínica desarrollado ut
 - `POST /citas`: Crea una nueva cita.
 - ...
 
-## Contribuciones
+## Desarrolladores
 
 ¡Contribuciones son bienvenidas! Si encuentras errores o mejoras, por favor crea un issue o envía un pull request.
 
