@@ -12,13 +12,13 @@ Este es un proyecto de API REST para la gestión de una clínica desarrollado ut
 1. Clona el repositorio:
 
     ```bash
-    git clone https://github.com/tu-usuario/tu-proyecto-api-clinica.git
-    cd tu-proyecto-api-clinica
+    git clone git@github.com:Allam9573/backend_clinica.git
     ```
 
 2. Configura la base de datos en `src/main/resources/application.properties`:
 
     ```properties
+    spring.jpa.hibernate.ddl-auto=validate
     spring.datasource.url=jdbc:mysql://localhost:3306/nombre_base_datos
     spring.datasource.username=usuario_bd
     spring.datasource.password=contraseña_bd
