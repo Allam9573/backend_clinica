@@ -22,6 +22,7 @@ public class Especialidad {
     @Column(name = "id_especialidad")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idEspecialidad;
+    @Column(name = "nombre_especialidad")
     private String nombre;
 
     @OneToMany(mappedBy = "especialidad")
