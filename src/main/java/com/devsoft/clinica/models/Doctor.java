@@ -20,16 +20,12 @@ import lombok.Setter;
 public class Doctor {
 
     @Id
-    @Column(name = "id_doctor")
+    @Column(name = "doctor_id")
     private Integer idDoctor;
     private String nombre;
     private String apellido;
-    private String dni;
-    private String telefono;
-    private String correo;
-
     @ManyToOne
-    @JoinColumn(name = "especialidad", insertable = false, updatable = false)
+    @JoinColumn(name = "especialidad_id", insertable = false, updatable = false)
     private Especialidad especialidad;
 
 }

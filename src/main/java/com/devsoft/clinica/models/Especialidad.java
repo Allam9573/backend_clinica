@@ -19,10 +19,10 @@ import lombok.Setter;
 public class Especialidad {
 
     @Id
-    @Column(name = "id_especialidad")
+    @Column(name = "especialidad_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idEspecialidad;
-    @Column(name = "nombre_especialidad")
+    @Column(name = "nombre")
     private String nombre;
 
     @OneToMany(mappedBy = "especialidad")
