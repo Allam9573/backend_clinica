@@ -22,7 +22,9 @@ public class Doctor {
     @Id
     @Column(name = "doctor_id")
     private Integer idDoctor;
+
     private String nombre;
+    
     private String apellido;
     @ManyToOne
     @JoinColumn(name = "especialidad_id", insertable = false, updatable = false)

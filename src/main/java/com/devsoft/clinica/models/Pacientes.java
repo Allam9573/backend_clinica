@@ -1,14 +1,12 @@
 package com.devsoft.clinica.models;
 
-import java.util.List;
+import java.util.Date;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,23 +14,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "especialidades")
+@Table(name = "pacientes")
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Especialidad {
+@AllArgsConstructor
 
-   
-    @Column(name = "especialidad_id")
+public class Pacientes {
+    
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "paciente_id")
     @Id
-    private Integer idEspecialidad;
+    private String idPaciente;
 
-    @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Doctor> doctores;
+    private String apellido;
 
+    @Column(name = "fecha_nacimiento")
+    private Date fechaNacimiento;
+
+    private String direccion;
+
+    private String telefono;
 }
