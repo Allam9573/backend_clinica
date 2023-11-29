@@ -1,61 +1,72 @@
-create database db_clinica;
-use db_clinica;
-drop database db_clinica;
+create database clinica;
+use clinica;
 
-show tables;
-
-create table especialidades(
-	id_especialidad int primary key auto_increment,
-    nombre_especialidad varchar(50) not null
+CREATE TABLE pacientes (
+    paciente_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    apellido VARCHAR(50),
+    fecha_nacimiento DATE,
+    direccion VARCHAR(100),
+    telefono VARCHAR(15)
 );
 
-create table doctores(
-	id_doctor int auto_increment,
-    nombre varchar(50),
-    apellido varchar(50),
-    dni varchar(20),
-    telefono varchar(15),
-    correo varchar(50),
-    especialidad int,
-    primary key(id_doctor),
-    foreign key(especialidad) references especialidades(id_especialidad)
+-- Creación de la tabla Especialidades
+CREATE TABLE especialidades (
+    especialidad_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50)
 );
 
-create table pacientes(
-	id_paciente int primary key auto_increment,
-    nombre varchar(50),
-    apellido varchar(50),
-    dni varchar(20),
-    telefono varchar(15),
-    correo varchar(50),
-    fecha_ingreso date,
-    direccion varchar(100)
+-- Creación de la tabla Salas
+CREATE TABLE salas (
+    sala_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    descripcion VARCHAR(200)
 );
 
-create table citas(
-	id_cita int primary key auto_increment,
-    id_paciente int,
-    id_doctor int,
-    id_sala int,
-    fecha_cita date,
-    hora_cita time,
-    diagnostico varchar(50),
-    foreign key(id_paciente) references pacientes(id_paciente),
-    foreign key(id_doctor) references doctores(id_doctor),
-    foreign key(id_sala) references salas(id_sala)
+-- Creación de la tabla Doctores
+CREATE TABLE doctores (
+    doctor_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    apellido VARCHAR(50),
+    especialidad_id INT,
+    FOREIGN KEY (especialidad_id) REFERENCES especialidades(especialidad_id)
 );
 
-create table historial_citas_paciente(
-	id_historial int auto_increment primary key,
-    id_cita int,
-    foreign key(id_cita) references citas(id_cita)
+
+
+-- Creación de la tabla Citas
+CREATE TABLE citas (
+    cita_id INT AUTO_INCREMENT PRIMARY KEY,
+    paciente_id INT,
+    doctor_id INT,
+    sala_id INT,
+    fecha_cita DATE,
+    hora_cita TIME,
+    FOREIGN KEY (paciente_id) REFERENCES pacientes(paciente_id),
+    FOREIGN KEY (doctor_id) REFERENCES doctores(doctor_id),
+    FOREIGN KEY (sala_id) REFERENCES salas(sala_id)
 );
 
-create table salas(
-	id_sala int primary key auto_increment,
-    nombre_sala varchar(50),
-    disponible boolean,
-    descripcion varchar(50)
+-- Creación de la tabla HistorialCitas
+CREATE TABLE historial_citas (
+    historial_id INT PRIMARY KEY,
+    cita_id INT,
+    paciente_id INT,
+    diagnostico VARCHAR(200),
+    tratamiento VARCHAR(200),
+    fecha_historial DATE,
+    FOREIGN KEY (cita_id) REFERENCES citas(cita_id),
+    FOREIGN KEY (paciente_id) REFERENCES pacientes(paciente_id)
 );
 
-desc especialidades;
+
+
+-- Creación de la tabla HorarioCitas
+CREATE TABLE horario_citas (
+    horario_id INT AUTO_INCREMENT PRIMARY KEY,
+    doctor_id INT,
+    dia_semana VARCHAR(20),
+    hora_inicio TIME,
+    hora_fin TIME,
+    FOREIGN KEY (doctor_id) REFERENCES doctores(doctor_id)
+);
