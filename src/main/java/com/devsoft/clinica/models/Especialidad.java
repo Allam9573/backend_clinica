@@ -1,5 +1,6 @@
 package com.devsoft.clinica.models;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -32,7 +33,7 @@ public class Especialidad {
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Doctor> doctores;
+    @OneToMany(mappedBy = "especialidad",cascade = CascadeType.ALL)
+    private List<Doctor> doctores= new LinkedList<>();
 
 }

@@ -1,6 +1,7 @@
 package com.devsoft.clinica.models;
 
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -13,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,7 +36,7 @@ public class Citas {
     private int idCitas;
 
     @Column(name = "fecha_cita")
-    private Date fechaCita;
+    private LocalDate fechaCita;
 
     @Column(name = "hora_cita")
     private LocalTime horaCita;
@@ -56,5 +58,8 @@ public class Citas {
 
     //  @ManyToOne
     // private HistorialCitas historialCitas;
+
+    @OneToOne(mappedBy = "citas")
+    private HistorialCitas historialCitas;
    
 }

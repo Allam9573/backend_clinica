@@ -1,5 +1,6 @@
 package com.devsoft.clinica.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class Pacientes {
     private String apellido;
 
     @Column(name = "fecha_nacimiento")
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     private String direccion;
 

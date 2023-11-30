@@ -1,6 +1,7 @@
 package com.devsoft.clinica.models;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -37,7 +38,7 @@ public class HistorialCitas {
     private String tratamiento;
 
     @Column(name = "fecha_historial")
-    private Date fechaHistorial;
+    private LocalDate fechaHistorial;
 
     // @OneToMany
     // @JoinColumn(name = "cita_id")
@@ -46,4 +47,8 @@ public class HistorialCitas {
     @OneToOne
     @JoinColumn(name = "paciente_id")
     private Pacientes pacientes;
+
+    @OneToOne
+    @JoinColumn(name = "cita_id")
+    private Citas citas;
 }

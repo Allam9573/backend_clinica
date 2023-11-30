@@ -39,7 +39,7 @@ public class Doctor {
     private Especialidad especialidad;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "doctor", cascade = CascadeType.ALL)
     private HorarioCitas horariocitas;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)

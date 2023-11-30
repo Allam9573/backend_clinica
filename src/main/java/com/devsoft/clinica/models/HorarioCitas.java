@@ -39,7 +39,8 @@ public class HorarioCitas {
     private LocalTime horaFin;
 
     
-    @OneToOne
+   
     @JoinColumn(name = "doctor_id")
-    private Doctor doctores;
+     @OneToOne
+    private Doctor doctor;
 }
