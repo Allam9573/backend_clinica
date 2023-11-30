@@ -3,7 +3,7 @@ package com.devsoft.clinica.models;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -59,7 +59,6 @@ public class Citas {
     //  @ManyToOne
     // private HistorialCitas historialCitas;
 
-    @OneToOne(mappedBy = "citas")
-    private HistorialCitas historialCitas;
+   
    
 }

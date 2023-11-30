@@ -48,7 +48,7 @@ public class HistorialCitas {
     @JoinColumn(name = "paciente_id")
     private Pacientes pacientes;
 
-    @OneToOne
+    @OneToMany
     @JoinColumn(name = "cita_id")
-    private Citas citas;
+    private List<Citas> citas;
 }
