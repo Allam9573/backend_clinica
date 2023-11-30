@@ -8,10 +8,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "horario_citas")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class HorarioCitas {
     
 
@@ -29,6 +38,8 @@ public class HorarioCitas {
     @Column(name = "hora_fin")
     private LocalTime horaFin;
 
+    
+    @OneToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctores;
 }

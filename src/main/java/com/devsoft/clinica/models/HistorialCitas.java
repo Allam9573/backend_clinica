@@ -3,12 +3,14 @@ package com.devsoft.clinica.models;
 import java.util.Date;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -18,33 +20,30 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "pacientes")
+@Table(name = "historial_citas")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+public class HistorialCitas {
 
-public class Pacientes {
-    
+    @Column(name = "historial_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "paciente_id")
     @Id
-    private String idPaciente;
+    private int idHistorial;
 
-    private String nombre;
+    private String diagnostico;
 
-    private String apellido;
+    private String tratamiento;
 
-    @Column(name = "fecha_nacimiento")
-    private Date fechaNacimiento;
+    @Column(name = "fecha_historial")
+    private Date fechaHistorial;
 
-    private String direccion;
+    // @OneToMany
+    // @JoinColumn(name = "cita_id")
+    // private List<Citas> citas;
 
-    private String telefono;
-
-    @OneToMany(mappedBy = "pacientes", cascade = CascadeType.ALL)
-    private List<Citas> citas;
-
-    @OneToOne(mappedBy = "pacientes")
-    private HistorialCitas historialCitas;
+    @OneToOne
+    @JoinColumn(name = "paciente_id")
+    private Pacientes pacientes;
 }
