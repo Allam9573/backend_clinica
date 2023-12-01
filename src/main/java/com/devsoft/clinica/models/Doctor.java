@@ -4,9 +4,13 @@ package com.devsoft.clinica.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -28,6 +32,7 @@ public class Doctor {
 
     @Id
     @Column(name = "doctor_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idDoctor;
 
     private String nombre;
@@ -38,10 +43,11 @@ public class Doctor {
     @JoinColumn(name = "especialidad_id", insertable = false, updatable = false)
     private Especialidad especialidad;
 
-
+    @JsonIgnore
     @OneToOne(mappedBy = "doctor", cascade = CascadeType.ALL)
     private HorarioCitas horariocitas;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<Citas> citas;
 
