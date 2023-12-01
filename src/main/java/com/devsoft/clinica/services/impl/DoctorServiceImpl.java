@@ -20,8 +20,6 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public Doctor crearDoctor(Doctor doctor) {
-
-        s
         return this.doctorRepository.save(doctor);
     }
 
