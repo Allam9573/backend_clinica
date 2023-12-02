@@ -54,7 +54,7 @@ public class Citas {
 
     @ManyToOne
     @JoinColumn(name = "sala_id")
-    private Salas salas;
+    private Sala salas;
 
     //  @ManyToOne
     // private HistorialCitas historialCitas;

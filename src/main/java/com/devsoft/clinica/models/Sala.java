@@ -21,7 +21,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Salas {
+public class Sala {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "sala_id")
