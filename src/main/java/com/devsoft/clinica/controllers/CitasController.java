@@ -28,6 +28,26 @@ public class CitasController {
         return "No existe la sala con el id: " + id;                       
     }
 
+     @PostMapping("/agregar/doctor")
+    public String agregarCitaDoc(@RequestParam(name = "doctor_id") int id,
+                                    @RequestBody Citas citas){
+        if(this.citasServiceImpl.agregarCitasDoctore(id, citas) != null){
+            return "Se ha agregado la cita al doctor con el id: " + id;
+        }
+
+        return "No existe el Doctor con el id: " + id;                       
+    }
+
+    @PostMapping("/agregar/paciente")
+    public String agregarCitaPaciente(@RequestParam(name = "paciente_id") int id,
+                                    @RequestBody Citas citas){
+        if(this.citasServiceImpl.agregarCitasPaciente(id, citas) != null){
+            return "Se ha agregado la cita al paciente con id: " + id;
+        }
+
+        return "No existe el paciente con el id: " + id;                       
+    }
+
 
 
 }

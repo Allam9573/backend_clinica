@@ -4,8 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devsoft.clinica.models.Citas;
+import com.devsoft.clinica.models.Doctor;
+import com.devsoft.clinica.models.Pacientes;
 import com.devsoft.clinica.models.Sala;
 import com.devsoft.clinica.repositories.CitasRepository;
+import com.devsoft.clinica.repositories.DoctorRepository;
+import com.devsoft.clinica.repositories.PacientesRepository;
 import com.devsoft.clinica.repositories.SalaRepository;
 import com.devsoft.clinica.services.CitasService;
 
@@ -17,6 +21,12 @@ public class CitasServiceImpl implements CitasService {
 
     @Autowired
     private SalaRepository salaRepository;
+
+    @Autowired
+    private DoctorRepository doctorRepository;
+
+    @Autowired
+    private PacientesRepository pacientesRepository;
     
     @Override
     public Sala agregarCitaASala(int id, Citas citas) {
@@ -32,6 +42,38 @@ public class CitasServiceImpl implements CitasService {
 
     private Sala buscarSala(int id){
         return this.salaRepository.findById(id).get();
+    }
+
+    @Override
+    public Doctor agregarCitasDoctore(int id, Citas citas) {
+       Doctor doctorAct = this.buscarDoctor(id);
+
+        if(doctorAct != null){
+            citas.setDoctor(doctorAct);
+            this.citasRepository.save(citas);
+        }
+
+        return doctorAct;
+    }
+
+    private Doctor buscarDoctor(int id){
+        return this.doctorRepository.findById(id).get();
+    }
+
+    @Override
+    public Pacientes agregarCitasPaciente(int id, Citas citas) {
+      Pacientes pacienteAct = this.buscarPaciente(id);
+
+        if(pacienteAct != null){
+            citas.setPacientes(pacienteAct);
+            this.citasRepository.save(citas);
+        }
+
+        return pacienteAct;
+    }
+
+    private Pacientes buscarPaciente(int id){
+        return this.pacientesRepository.findById(id).get();
     }
     
 }

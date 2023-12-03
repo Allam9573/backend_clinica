@@ -1,6 +1,7 @@
 package com.devsoft.clinica.models;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class Pacientes {
     private String telefono;
 
     @OneToMany(mappedBy = "pacientes", cascade = CascadeType.ALL)
-    private List<Citas> citas;
+    private List<Citas> citas = new ArrayList<>();
 
     @OneToOne(mappedBy = "pacientes")
     private HistorialCitas historialCitas;
