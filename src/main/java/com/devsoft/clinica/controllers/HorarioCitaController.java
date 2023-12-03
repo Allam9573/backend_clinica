@@ -11,7 +11,7 @@ import com.devsoft.clinica.models.HorarioCitas;
 import com.devsoft.clinica.services.impl.HorarioCitasServiceImpl;
 
 @RestController
-@RequestMapping("/apis/Horario")
+@RequestMapping("/api/horario")
 public class HorarioCitaController {
     
     @Autowired

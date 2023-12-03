@@ -16,7 +16,7 @@ import com.devsoft.clinica.models.Especialidad;
 import com.devsoft.clinica.services.impl.EspecialidadServiceImpl;
 
 @RestController
-@RequestMapping("/apis/especialidades")
+@RequestMapping("/api/especialidades")
 public class EspecialidadController {
 
     @Autowired

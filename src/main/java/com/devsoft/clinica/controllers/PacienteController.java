@@ -17,7 +17,7 @@ import com.devsoft.clinica.models.Pacientes;
 import com.devsoft.clinica.services.impl.PacientesServiceImpl;
 
 @RestController
-@RequestMapping("/apis/paciente")
+@RequestMapping("/api/paciente")
 public class PacienteController {
     
     @Autowired

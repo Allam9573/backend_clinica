@@ -12,7 +12,7 @@ import com.devsoft.clinica.models.Sala;
 import com.devsoft.clinica.services.impl.CitasServiceImpl;
 
 @RestController
-@RequestMapping("/apis/citas")
+@RequestMapping("/api/citas")
 public class CitasController {
     
     @Autowired
