@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devsoft.clinica.models.Doctor;
@@ -32,5 +33,17 @@ public class DoctorController {
     @GetMapping("/listar")
     public List<Doctor> listarDoctores() {
         return doctorServiceImpl.listarDoctores();
+    }
+
+    @PostMapping("/agregar/especialidad")
+    public String agregarDoctorEspecialidad(@RequestParam(name="especialidad_id") int id,
+                                       @RequestBody Doctor doctor){{
+        if(this.doctorServiceImpl.agregarDoctorEspecialidad(id, doctor) != null){
+            return "Se ha agregado el doctor a la especialidad: " + id;
+        }
+
+        return "No existe el cliente con dni: " + id;
+    }
+
     }
 }

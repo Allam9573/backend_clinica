@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devsoft.clinica.models.Doctor;
+import com.devsoft.clinica.models.Especialidad;
 import com.devsoft.clinica.repositories.DoctorRepository;
 import com.devsoft.clinica.repositories.EspecialidadRepository;
 import com.devsoft.clinica.services.DoctorService;
@@ -37,6 +38,21 @@ public class DoctorServiceImpl implements DoctorService {
     public Doctor eliminarDoctorId(int id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'eliminarDoctorId'");
+    }
+
+    @Override
+    public Especialidad agregarDoctorEspecialidad(int id, Doctor doctor) {
+        Especialidad especialidadAgregar =this.buscarEspecialidad(id);
+        if(especialidadAgregar != null){
+            doctor.setEspecialidad(especialidadAgregar);
+            this.doctorRepository.save(doctor);
+        }
+
+        return especialidadAgregar;
+    }
+
+    private Especialidad buscarEspecialidad(int id){
+        return this.especialidadRepository.findById(id).get();
     }
 
 }
