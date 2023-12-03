@@ -3,6 +3,7 @@ package com.devsoft.clinica.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,22 +23,24 @@ public class SalaController {
     private SalaServiceImpl salaServiceImpl;
 
     @GetMapping("/listar")
-    public List<Sala> listarSalas() {
-        return this.salaServiceImpl.listarSalas();
+    public ResponseEntity<List<Sala>> listarSalas() {
+        List<Sala> listaSalas = this.salaServiceImpl.listarSalas();
+        return ResponseEntity.ok(listaSalas);
     }
 
     @PostMapping("/crear")
-    public Sala crearSala(@RequestBody Sala nuevaSala){
-        if(nuevaSala.getCitas() != null){
+    public Sala crearSala(@RequestBody Sala nuevaSala) {
+        if (nuevaSala.getCitas() != null) {
             for (Citas citas : nuevaSala.getCitas()) {
-                citas.setSalas(nuevaSala);                
+                citas.setSalas(nuevaSala);
             }
         }
 
         return this.salaServiceImpl.crearSala(nuevaSala);
     }
+
     @GetMapping("/eliminar")
-    public String eliminarSala(@RequestParam(name = "sala_id") int id){
+    public String eliminarSala(@RequestParam(name = "sala_id") int id) {
         return this.salaServiceImpl.eliminarSala(id);
 
     }
