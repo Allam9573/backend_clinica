@@ -13,8 +13,10 @@ public interface DoctorService {
 
     public Doctor busDoctorId(int id);
 
-    public Doctor eliminarDoctorId(int id);
+    public String eliminarDoctorId(int id);
 
     public Especialidad agregarDoctorEspecialidad(int id, Doctor doctor);
+
+    // public void agregarDoctorAEspecialidad(int id, Doctor doctor);
 
 }

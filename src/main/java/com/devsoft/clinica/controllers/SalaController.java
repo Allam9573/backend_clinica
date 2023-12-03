@@ -16,7 +16,7 @@ import com.devsoft.clinica.models.Sala;
 import com.devsoft.clinica.services.impl.SalaServiceImpl;
 
 @RestController
-@RequestMapping("/api/salas")
+@RequestMapping("/apis/salas")
 public class SalaController {
 
     @Autowired

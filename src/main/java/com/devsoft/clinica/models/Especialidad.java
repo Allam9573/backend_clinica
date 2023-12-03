@@ -1,5 +1,6 @@
 package com.devsoft.clinica.models;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,6 +36,6 @@ public class Especialidad {
     private String nombre;
 
     @OneToMany(mappedBy = "especialidad", cascade = CascadeType.ALL)
-    private List<Doctor> doctores = new LinkedList<>();
+    private List<Doctor> doctores = new ArrayList<>();
 
 }

@@ -2,6 +2,7 @@ package com.devsoft.clinica.models;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -39,16 +40,17 @@ public class Doctor {
     
     private String apellido;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "especialidad_id", insertable = false, updatable = false)
+    @JoinColumn(name = "especialidad_id")
     private Especialidad especialidad;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "doctor", cascade = CascadeType.ALL)
-    private HorarioCitas horariocitas;
-
-    @JsonIgnore
+   
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
-    private List<Citas> citas;
+    private List<HorarioCitas> horariocitas= new ArrayList<>();
+
+    
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    private List<Citas> citas = new ArrayList<>();
 
 }

@@ -15,7 +15,7 @@ import com.devsoft.clinica.services.impl.DoctorServiceImpl;
 import com.devsoft.clinica.services.impl.EspecialidadServiceImpl;
 
 @RestController
-@RequestMapping("/api/doctores")
+@RequestMapping("/apis/doctores")
 public class DoctorController {
 
     @Autowired
@@ -36,14 +36,15 @@ public class DoctorController {
     }
 
     @PostMapping("/agregar/especialidad")
-    public String agregarDoctorEspecialidad(@RequestParam(name="especialidad_id") int id,
+    public String agregarCuentaCliente(@RequestParam(name="especialidad_id") int id,
                                        @RequestBody Doctor doctor){{
         if(this.doctorServiceImpl.agregarDoctorEspecialidad(id, doctor) != null){
-            return "Se ha agregado el doctor a la especialidad: " + id;
+            return "Se ha agregado la cuenta al cliente: " + id;
         }
 
         return "No existe el cliente con dni: " + id;
     }
 
     }
+    
 }

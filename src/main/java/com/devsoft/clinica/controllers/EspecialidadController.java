@@ -3,6 +3,7 @@ package com.devsoft.clinica.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,7 @@ import com.devsoft.clinica.models.Especialidad;
 import com.devsoft.clinica.services.impl.EspecialidadServiceImpl;
 
 @RestController
-@RequestMapping("/api/especialidades")
+@RequestMapping("/apis/especialidades")
 public class EspecialidadController {
 
     @Autowired
@@ -26,9 +27,10 @@ public class EspecialidadController {
         return especialidadServiceImpl.crearEspecialidad(especialidad);
     }
 
-    @GetMapping("/listar")
-    public List<Especialidad> listarEspecialidades() {
-        return especialidadServiceImpl.listarEspecialidades();
+     @GetMapping("/listar")
+    public ResponseEntity<List<Especialidad>> listarEspecialidades() {
+        List<Especialidad> especialidades = especialidadServiceImpl.listarEspecialidades();
+        return ResponseEntity.ok(especialidades);
     }
 
     @DeleteMapping("/eliminar")

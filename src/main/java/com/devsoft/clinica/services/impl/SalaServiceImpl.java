@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.devsoft.clinica.models.Citas;
 import com.devsoft.clinica.models.Sala;
+import com.devsoft.clinica.repositories.CitasRepository;
 import com.devsoft.clinica.repositories.SalaRepository;
 import com.devsoft.clinica.services.SalasService;
 
@@ -14,6 +16,8 @@ public class SalaServiceImpl implements SalasService {
 
     @Autowired
     private SalaRepository salaRepository;
+
+    private CitasRepository citasRepository;
 
     @Override
     public Sala crearSala(Sala sala) {
@@ -36,6 +40,8 @@ public class SalaServiceImpl implements SalasService {
 
         return "No existe la sala con id: " + id;
     }
+
+   
 
    
 

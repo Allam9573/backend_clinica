@@ -1,5 +1,6 @@
 package com.devsoft.clinica.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -34,7 +35,7 @@ public class Sala {
     private String descripcion;
 
     @OneToMany(mappedBy = "salas", cascade = CascadeType.ALL)
-    private List<Citas> citas;
+    private List<Citas> citas = new ArrayList<>();
 
     
 }

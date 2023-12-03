@@ -2,13 +2,15 @@ package com.devsoft.clinica.models;
 
 import java.time.LocalTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,8 +41,8 @@ public class HorarioCitas {
     private LocalTime horaFin;
 
     
-   
+    @JsonIgnore
     @JoinColumn(name = "doctor_id")
-     @OneToOne
+    @ManyToOne
     private Doctor doctor;
 }

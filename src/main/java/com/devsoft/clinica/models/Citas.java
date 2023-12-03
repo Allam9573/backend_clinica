@@ -48,10 +48,12 @@ public class Citas {
     @JoinColumn(name = "paciente_id")
     private Pacientes pacientes;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "sala_id")
     private Sala salas;
