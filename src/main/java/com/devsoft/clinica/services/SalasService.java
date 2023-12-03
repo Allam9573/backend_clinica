@@ -2,6 +2,7 @@ package com.devsoft.clinica.services;
 
 import java.util.List;
 
+
 import com.devsoft.clinica.models.Sala;
 
 public interface SalasService {
@@ -10,6 +11,8 @@ public interface SalasService {
 
     public List<Sala> listarSalas();
 
-    public void eliminarSala(int id);
+    public String eliminarSala(int id);
+
+    
 
 }

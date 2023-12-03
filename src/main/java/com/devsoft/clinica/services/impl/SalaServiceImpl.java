@@ -26,9 +26,17 @@ public class SalaServiceImpl implements SalasService {
     }
 
     @Override
-    public void eliminarSala(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarSala'");
+    public String eliminarSala(int id) {
+        Sala salaEliminar = this.salaRepository.findById(id).get();
+
+        if(salaEliminar != null){
+            this.salaRepository.delete(salaEliminar);
+            return "Se ha eliminado la sala: " + salaEliminar.getIdSala(); 
+        }
+
+        return "No existe la sala con id: " + id;
     }
+
+   
 
 }
