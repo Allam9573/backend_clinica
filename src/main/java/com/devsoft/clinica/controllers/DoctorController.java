@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devsoft.clinica.models.Citas;
 import com.devsoft.clinica.models.Doctor;
+import com.devsoft.clinica.models.HorarioCitas;
 import com.devsoft.clinica.services.impl.DoctorServiceImpl;
 import com.devsoft.clinica.services.impl.EspecialidadServiceImpl;
 
 @RestController
-@RequestMapping("/apis/doctores")
+@RequestMapping("/api/doctores")
 public class DoctorController {
 
     @Autowired
@@ -26,8 +28,20 @@ public class DoctorController {
 
     @PostMapping("/crear")
     public Doctor crearDoctor(@RequestBody Doctor doctor) {
-        System.out.println(doctor.getEspecialidad().getNombre());
-        return doctorServiceImpl.crearDoctor(doctor);
+        if(doctor.getCitas() != null){
+            for (Citas citas : doctor.getCitas()) {
+                citas.setDoctor(doctor);                
+            }
+        }
+
+        if(doctor.getHorariocitas() != null){
+            for (HorarioCitas horarioCitas : doctor.getHorariocitas()) {
+                horarioCitas.setDoctor(doctor);                
+            }
+        }
+
+
+        return this.doctorServiceImpl.crearDoctor(doctor);
     }
 
     @GetMapping("/listar")
