@@ -37,8 +37,8 @@ public class Pacientes {
 
     private String apellido;
 
-    @Column(name = "fecha_nacimiento")
-    private LocalDate fechaNacimiento;
+    @Column(name = "fecha_creacion")
+    private Date fechaCreacion;
 
     private String direccion;
 

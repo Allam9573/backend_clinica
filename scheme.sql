@@ -5,9 +5,9 @@ CREATE TABLE pacientes (
     paciente_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50),
     apellido VARCHAR(50),
-    fecha_nacimiento DATE,
     direccion VARCHAR(100),
-    telefono VARCHAR(15)
+    telefono VARCHAR(15),
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Creación de la tabla Especialidades
