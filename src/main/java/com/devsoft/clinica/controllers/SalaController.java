@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,7 @@ public class SalaController {
         return this.salaServiceImpl.listarSalas();
     }
 
-    
+    @PostMapping("/crear")
     public Sala crearSala(@RequestBody Sala nuevaSala){
         if(nuevaSala.getCitas() != null){
             for (Citas citas : nuevaSala.getCitas()) {
@@ -35,7 +36,7 @@ public class SalaController {
 
         return this.salaServiceImpl.crearSala(nuevaSala);
     }
-
+    @GetMapping("/eliminar")
     public String eliminarSala(@RequestParam(name = "sala_id") int id){
         return this.salaServiceImpl.eliminarSala(id);
 
