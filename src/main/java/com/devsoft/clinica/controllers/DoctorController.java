@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,18 +29,17 @@ public class DoctorController {
 
     @PostMapping("/crear")
     public Doctor crearDoctor(@RequestBody Doctor doctor) {
-        if(doctor.getCitas() != null){
+        if (doctor.getCitas() != null) {
             for (Citas citas : doctor.getCitas()) {
-                citas.setDoctor(doctor);                
+                citas.setDoctor(doctor);
             }
         }
 
-        if(doctor.getHorariocitas() != null){
+        if (doctor.getHorariocitas() != null) {
             for (HorarioCitas horarioCitas : doctor.getHorariocitas()) {
-                horarioCitas.setDoctor(doctor);                
+                horarioCitas.setDoctor(doctor);
             }
         }
-
 
         return this.doctorServiceImpl.crearDoctor(doctor);
     }
@@ -49,16 +49,17 @@ public class DoctorController {
         return doctorServiceImpl.listarDoctores();
     }
 
-    @PostMapping("/agregar/especialidad")
-    public String agregarCuentaCliente(@RequestParam(name="especialidad_id") int id,
-                                       @RequestBody Doctor doctor){{
-        if(this.doctorServiceImpl.agregarDoctorEspecialidad(id, doctor) != null){
-            return "Se ha agregado la cuenta al cliente: " + id;
+    @PostMapping("/agregar/{id_especialidad}")
+    public String agregarCuentaCliente(@PathVariable int id,
+            @RequestBody Doctor doctor) {
+        {
+            if (this.doctorServiceImpl.agregarDoctorEspecialidad(id, doctor) != null) {
+                return "Se ha agregado la cuenta al cliente: " + id;
+            }
+
+            return "No existe el cliente con dni: " + id;
         }
 
-        return "No existe el cliente con dni: " + id;
     }
 
-    }
-    
 }

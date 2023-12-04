@@ -40,8 +40,8 @@ public class PacienteController {
         return this.pacientesServiceImpl.listarPacientes();
     }
 
-    @DeleteMapping("/eliminar")
-    public String eliminarPaciente(@RequestParam(name = "paciente_id") int id) {
+    @DeleteMapping("/eliminar/{id}")
+    public String eliminarPaciente(@PathVariable int id) {
         return this.pacientesServiceImpl.borrarPaciente(id);
     }
 
