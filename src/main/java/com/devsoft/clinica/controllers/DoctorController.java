@@ -3,6 +3,7 @@ package com.devsoft.clinica.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,18 +47,19 @@ public class DoctorController {
 
     @GetMapping("/listar")
     public List<Doctor> listarDoctores() {
+        System.out.println(doctorServiceImpl.listarDoctores());
         return doctorServiceImpl.listarDoctores();
     }
 
-    @PostMapping("/agregar/{id_especialidad}")
-    public String agregarCuentaCliente(@PathVariable int id,
+    @PostMapping(value="/agregar/{id_especialidad}",  consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String agregarCuentaCliente(@PathVariable int id_especialidad,
             @RequestBody Doctor doctor) {
         {
-            if (this.doctorServiceImpl.agregarDoctorEspecialidad(id, doctor) != null) {
-                return "Se ha agregado la cuenta al cliente: " + id;
+            if (this.doctorServiceImpl.agregarDoctorEspecialidad(id_especialidad, doctor) != null) {
+                return "Se ha agregado la cuenta al cliente: " + id_especialidad;
             }
 
-            return "No existe el cliente con dni: " + id;
+            return "No existe el cliente con dni: " + id_especialidad;
         }
 
     }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -34,8 +35,10 @@ public class Especialidad {
 
     @Column(name = "nombre")
     private String nombre;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "especialidad", cascade = CascadeType.ALL)
     private List<Doctor> doctores = new ArrayList<>();
+
+
 
 }
