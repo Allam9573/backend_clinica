@@ -1,5 +1,7 @@
 package com.devsoft.clinica.services;
 
+import java.util.List;
+
 import com.devsoft.clinica.models.Citas;
 import com.devsoft.clinica.models.Doctor;
 import com.devsoft.clinica.models.Pacientes;
@@ -15,5 +17,6 @@ public interface CitasService {
 
     
     public void agregarCita(int idPaciente, int idDoctor, int idSala);
+    public List<Citas> listarCitas();
     
 }

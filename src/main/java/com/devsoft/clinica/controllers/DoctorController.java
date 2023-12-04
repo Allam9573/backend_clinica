@@ -51,7 +51,7 @@ public class DoctorController {
         return doctorServiceImpl.listarDoctores();
     }
 
-    @PostMapping(value="/agregar/{id_especialidad}",  consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/agregar/{id_especialidad}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public String agregarCuentaCliente(@PathVariable int id_especialidad,
             @RequestBody Doctor doctor) {
         {
@@ -62,6 +62,16 @@ public class DoctorController {
             return "No existe el cliente con dni: " + id_especialidad;
         }
 
+    }
+
+    @GetMapping("/listar/{especialidad_id}")
+    public List<Doctor> getDoctoresPorEspecialidad(@PathVariable int especialidad_id) {
+        return doctorServiceImpl.getDoctoresEspecialidad(especialidad_id);
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminaDoctor(@PathVariable int id){
+        return doctorServiceImpl.eliminarDoctorId(id);
     }
 
 }

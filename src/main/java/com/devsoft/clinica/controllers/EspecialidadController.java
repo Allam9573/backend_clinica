@@ -37,8 +37,8 @@ public class EspecialidadController {
         return ResponseEntity.ok(especialidades);
     }
 
-    @DeleteMapping("/eliminar")
-    public String eliminar(@RequestParam int id) {
+    @DeleteMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable int id) {
         return especialidadServiceImpl.eliminarEspecialidadPorId(id);
     }
 

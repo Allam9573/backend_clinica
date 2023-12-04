@@ -35,7 +35,8 @@ public class Especialidad {
 
     @Column(name = "nombre")
     private String nombre;
-    @JsonBackReference
+   
+    
     @OneToMany(mappedBy = "especialidad", cascade = CascadeType.ALL)
     private List<Doctor> doctores = new ArrayList<>();
 

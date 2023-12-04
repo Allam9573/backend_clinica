@@ -15,7 +15,7 @@ import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
-    
+
     @Autowired
     private DoctorRepository doctorRepository;
 
@@ -41,9 +41,9 @@ public class DoctorServiceImpl implements DoctorService {
     public String eliminarDoctorId(int id) {
         Doctor doctorEliminar = this.doctorRepository.findById(id).get();
 
-        if(doctorEliminar != null){
+        if (doctorEliminar != null) {
             this.doctorRepository.delete(doctorEliminar);
-            return "Se ha eliminado el cliente: " + doctorEliminar.getIdDoctor(); 
+            return "Se ha eliminado el doctor: " + doctorEliminar.getIdDoctor();
         }
 
         return "No existe el cliente con dni: " + id;
@@ -51,33 +51,27 @@ public class DoctorServiceImpl implements DoctorService {
 
     // @Override
     // public void agregarDoctorAEspecialidad(int id, Doctor doctor) {
-    //      Especialidad especialidadAgregar =this.buscarEspecialidad(id);
-            
-    //      if(especialidadAgregar != null){
-    //          // Asociar el doctor con la especialidad
-    //     doctor.setEspecialidad(especialidadAgregar);
+    // Especialidad especialidadAgregar =this.buscarEspecialidad(id);
 
-    //     // Agregar el doctor a la lista de doctores de la especialidad
-    //     especialidadAgregar.getDoctores().add(doctor);
+    // if(especialidadAgregar != null){
+    // // Asociar el doctor con la especialidad
+    // doctor.setEspecialidad(especialidadAgregar);
 
-    //     // Guardar el doctor y la especialidad en la base de datos
-    //     doctorRepository.save(doctor);
-    //     especialidadRepository.save(especialidadAgregar);
+    // // Agregar el doctor a la lista de doctores de la especialidad
+    // especialidadAgregar.getDoctores().add(doctor);
+
+    // // Guardar el doctor y la especialidad en la base de datos
+    // doctorRepository.save(doctor);
+    // especialidadRepository.save(especialidadAgregar);
     // }
-    //      }
-
-       
-
-
-
+    // }
 
     @Override
     public Especialidad agregarDoctorEspecialidad(int id, Doctor doctor) {
-        Especialidad especialidadAgregar =this.buscarEspecialidad(id);
-        if(especialidadAgregar != null){
+        Especialidad especialidadAgregar = this.buscarEspecialidad(id);
+        if (especialidadAgregar != null) {
             doctor.setEspecialidad(especialidadAgregar);
             especialidadAgregar.getDoctores().add(doctor);
-             
 
             this.doctorRepository.save(doctor);
             especialidadRepository.save(especialidadAgregar);
@@ -86,8 +80,12 @@ public class DoctorServiceImpl implements DoctorService {
         return especialidadAgregar;
     }
 
-    private Especialidad buscarEspecialidad(int id){
+    private Especialidad buscarEspecialidad(int id) {
         return this.especialidadRepository.findById(id).get();
+    }
+
+    public List<Doctor> getDoctoresEspecialidad(int id) {
+        return doctorRepository.findByEspecialidadId(id);
     }
 
 }

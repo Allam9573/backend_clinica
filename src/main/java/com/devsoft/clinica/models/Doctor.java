@@ -42,7 +42,7 @@ public class Doctor {
     
     private String apellido;
 
-    @JsonManagedReference
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "especialidad_id", referencedColumnName = "especialidad_id")
     private Especialidad especialidad;

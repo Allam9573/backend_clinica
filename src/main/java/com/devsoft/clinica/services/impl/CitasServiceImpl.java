@@ -2,6 +2,7 @@ package com.devsoft.clinica.services.impl;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,58 +39,58 @@ public class CitasServiceImpl implements CitasService {
 
     @Autowired
     private PacientesService pacienteService;
-    
+
     @Autowired
     private DoctorService doctorService;
 
     @Autowired
     private SalasService salaService;
-    
+
     // @Override
     // public Sala agregarCitaASala(int id, Citas citas) {
-    //     Sala salaAct = this.buscarSala(id);
+    // Sala salaAct = this.buscarSala(id);
 
-    //     if(salaAct != null){
-    //         citas.setSalas(salaAct);
-    //         this.citasRepository.save(citas);
-    //     }
-
-    //     return salaAct;
+    // if(salaAct != null){
+    // citas.setSalas(salaAct);
+    // this.citasRepository.save(citas);
     // }
 
-    private Sala buscarSala(int id){
+    // return salaAct;
+    // }
+
+    private Sala buscarSala(int id) {
         return this.salaRepository.findById(id).get();
     }
 
     // @Override
     // public Doctor agregarCitasDoctore(int id, Citas citas) {
-    //    Doctor doctorAct = this.buscarDoctor(id);
+    // Doctor doctorAct = this.buscarDoctor(id);
 
-    //     if(doctorAct != null){
-    //         citas.setDoctor(doctorAct);
-    //         this.citasRepository.save(citas);
-    //     }
-
-    //     return doctorAct;
+    // if(doctorAct != null){
+    // citas.setDoctor(doctorAct);
+    // this.citasRepository.save(citas);
     // }
 
-    private Doctor buscarDoctor(int id){
+    // return doctorAct;
+    // }
+
+    private Doctor buscarDoctor(int id) {
         return this.doctorRepository.findById(id).get();
     }
 
     // @Override
     // public Pacientes agregarCitasPaciente(int id, Citas citas) {
-    //   Pacientes pacienteAct = this.buscarPaciente(id);
+    // Pacientes pacienteAct = this.buscarPaciente(id);
 
-    //     if(pacienteAct != null){
-    //         citas.setPacientes(pacienteAct);
-    //         this.citasRepository.save(citas);
-    //     }
-
-    //     return pacienteAct;
+    // if(pacienteAct != null){
+    // citas.setPacientes(pacienteAct);
+    // this.citasRepository.save(citas);
     // }
 
-    private Pacientes buscarPaciente(int id){
+    // return pacienteAct;
+    // }
+
+    private Pacientes buscarPaciente(int id) {
         return this.pacientesRepository.findById(id).get();
     }
 
@@ -99,25 +100,28 @@ public class CitasServiceImpl implements CitasService {
         Pacientes paciente = buscarPaciente(idPaciente);
         Doctor doctor = buscarDoctor(idDoctor);
         Sala sala = buscarSala(idSala);
-    
+
         Citas nuevaCita = new Citas(); // Mover la creación de nuevaCita aquí
         nuevaCita.setFechaCita(LocalDate.now());
         nuevaCita.setHoraCita(LocalTime.now());
         nuevaCita.setPacientes(paciente);
         nuevaCita.setDoctor(doctor);
         nuevaCita.setSalas(sala);
-    
+
         paciente.getCitas().add(nuevaCita);
         doctor.getCitas().add(nuevaCita);
         sala.getCitas().add(nuevaCita);
-    
+
         pacienteService.crearPaciente(paciente);
         doctorService.crearDoctor(doctor);
         salaService.crearSala(sala);
-    
+
         citasRepository.save(nuevaCita);
     }
 
-    
-    
+    @Override
+    public List<Citas> listarCitas() {
+        return citasRepository.findAll();
+    }
+
 }
