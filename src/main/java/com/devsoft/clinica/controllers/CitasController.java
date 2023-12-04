@@ -1,8 +1,12 @@
 package com.devsoft.clinica.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,15 +20,15 @@ import com.devsoft.clinica.services.impl.CitasServiceImpl;
 @RestController
 @RequestMapping("/api/citas")
 public class CitasController {
-    
+
     @Autowired
     private CitasServiceImpl citasServiceImpl;
 
-    @PostMapping("/agregar")
+    @PostMapping("/agregar/{idPaciente}/{idDoctor}/{idSala}")
     public ResponseEntity<String> agregarCita(
-            @RequestParam("idPaciente") int idPaciente,
-            @RequestParam("idDoctor") int idDoctor,
-            @RequestParam("idSala") int idSala) {
+            @PathVariable int idPaciente,
+            @PathVariable int idDoctor,
+            @PathVariable int idSala) {
 
         try {
             citasServiceImpl.agregarCita(idPaciente, idDoctor, idSala);
@@ -34,5 +38,9 @@ public class CitasController {
         }
     }
 
+    @GetMapping("/listar")
+    public List<Citas> listarCitas() {
+        return citasServiceImpl.listarCitas();
+    }
 
 }
